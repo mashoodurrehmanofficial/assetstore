@@ -98,7 +98,7 @@ def IMAGE_Handling(sender,instance,**kwargs):
 @receiver(post_delete, sender=Item)
 def delete_image(sender, instance, using, **kwargs):
     if instance.image.name: 
-        os.remove(os.path.join(os.getcwd(),'Media',f'\\{instance.image.name}'))
+        os.remove(os.path.join(os.getcwd(),'Media',f'{instance.image.name}'))
  
 
 
