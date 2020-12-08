@@ -31,7 +31,7 @@ from bs4 import BeautifulSoup
 # print(soup)
 # print(soup.find('img').get('src'))
 
- 
+
 x = ['212 **', "how ** to download", '** presave']
 import random
 random.shuffle(x)
@@ -39,10 +39,10 @@ x = [x.replace('**', 'query') for x in x]
 print(x)
 
 
-
+#
 # test
 
 
 
 
- 
+
