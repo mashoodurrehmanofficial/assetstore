@@ -120,9 +120,7 @@ USE_TZ = True
  
 STATIC_URL = '/Static/'
 # STATIC_ROOT =os.path.join(BASE_DIR, 'Static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'Static')
-]
+STATIC_ROOT =os.path.join(BASE_DIR, 'Static')
 # git config --global user.email "mashoodurrehmanofficial.com".
 MEDIA_URL = '/Media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'Media')
