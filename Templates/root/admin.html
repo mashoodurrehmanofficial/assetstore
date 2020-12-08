@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+{% block 'mainbody' %}
+ 
+ 
+<main> 
+  <input type="text" name="autocom" value="">
+</main>  <br>
+<div class="container" id="results"></div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock 'mainbody' %} 
+{% block 'js' %} 
+<script> 
+  $("input").keyup(function(){  
+  $.ajax({
+        url:"/admin/admin/admin/autocom",
+        data:{'value':$(this).val()},
+        success:function(data){
+          $('#results').html("")
+            if(data.results.length>0){
+              for(var i=0;i<data.results.length;i++){
+                $('#results').append(data.results[i]+"<br>")
+              }
+            }else{
+              $('#results').append('<h1 class="red-text">***Not Found***</h1>')
+
+            }
+        }
+    })
+
+})
+
+
+ 
+</script>
+{% endblock 'js' %}     

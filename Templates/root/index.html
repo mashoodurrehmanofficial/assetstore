@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block 'mainbody' %} 
+
+
+<div class="white center" style="margin:2px 30px;border-radius:20px;padding:5px 10px">
+    <h1 class="text"><b>Get paid assets for free</b></h1>
+</div>
+<div class="white" style="margin:2px 30px;border-radius:20px;padding:5px 10px">
+    <div class="row" style="margin:3px 5px">
+        {% for x in items %}
+            <div class="col m4 l4" style="padding:0px 10px !important;"> 
+            <div class=" z-depth-2" style="margin-top:10px;height:310px" >
+                <img src="/Media/{{x.image}}" height="230px" width="100%">
+                <div class="" style="line-height:30px;font-size:25px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a href="/{{x.shortname}}">{{x.title}}</a></div>
+            </div>
+        </div>  
+        {% endfor %}
+       
+      
+       
+      
+ 
+
+    </div>
+</div>
+
+ 
+
+
+{% endblock 'mainbody' %} 
+{% block 'js' %}     
+<script>
+url = new URL(window.location.href)
+var ip = url.searchParams.get('ip')
+var userid = url.searchParams.get('userid')
+var link = window.location.origin+window.location.pathname
+// $.ajax({
+//     url:'sessioncompleted', 
+//     data:{"ip":ip,"userid":userid,"link":link},
+//     success:function(data){
+//     console.log(data);
+//     }
+// })
+</script>
+{% endblock 'js' %}     

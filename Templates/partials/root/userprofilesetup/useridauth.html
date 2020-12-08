@@ -1,0 +1,140 @@
+
+{% if user_profile.email_verified == False %} <br>
+<div class="container"><br>
+  <div class="container" style="position: relative;">
+    <div id="verifyemaildiv"class=" card-panel grey lighten-5" style="margin: 0px;">
+      <span class="green center white-text z-depth-2" style="font-size: 30px;margin: 0px;position: absolute;top:-30px;left: 50px;right: 50px;padding: 5px 10px;">Verify your Email</span>
+        <br>
+        <div class="" style="display: flex;justify-content: center;align-items: center;">
+          <span style="padding: 10px 15px;border-radius: 20px;" class="white lighten-3 z-depth-1"><i style="display: none;" id="verifiedcheckicon" class="material-icons green-text left">check</i>  {{user.email}}</span>
+        </div> <br>
+<!-- LOADER -->
+<div id="loader" style="display: none;">
+  {% include "partials/root/userprofilesetup/loader.html" %}
+</div>
+<!-- END PRELOADER -->
+        <div id="emailcodediv" class="input-field" style="display: none;">
+          <p>Verificaation link has been sent to {{user.email }}. Just go to your email and verify your email.</p>
+        </div>   <br>
+      <span id="sendcode" class="green btn" style="text-transform: none;width: 100%;font-size: large;">Send Code </span>
+      <span id="verifysentcode" class="green btn" style="text-transform: none;width: 100%;font-size: large;display: none;">Verify Code</span>
+  </div>
+  </div>
+  </div> 
+<script>  
+document.getElementById('sendcode').addEventListener('click', function(){ 
+  this.innerHTML="<b>Sending Code . . .</b>"
+  $('#loader').show()
+  $.ajax({
+    url: '/sendemailcode', 
+    success:function(data){
+      if(data.status==1){
+        M.toast({html: 'Code Sent ', classes: 'rounded green'});
+        $('#loader').hide()
+        $('#emailcodediv').show()
+        $('#sendcode').html("Verify code") 
+        $('#sendcode').hide() 
+        // url:'/verifysentcode', 
+             
+  
+      }else{
+        swal('Sorry !',"There was an error", 'warning')
+      }
+    }
+  })
+}) 
+</script>   
+
+
+
+{% elif user_profile.website == '' %}  <br>
+<div class="container"><br>
+<div class="container" style="position: relative;">
+  <div id="verifylinkform"class=" card-panel grey lighten-5" style="margin: 0px;">
+    <span class="green center white-text z-depth-3" style="font-size: 30px;margin: 0px;position: absolute;top:-30px;left: 50px;right: 50px;padding: 5px 10px;">Setup your Webite</span>
+    <br>
+    <br>
+      <div id="weblinkdiv" class="input-field">
+        <input id="url" name="url" type="text" class="validate" required> 
+        <label for="url">Enter website link  e.g https://materializecss.com/</label>
+      </div>   
+    <span id="verifylink" class="green btn" style="text-transform: none;width: 100%;font-size: large;">Verify Link </span>
+    <div id="code" style="display: none;">
+      
+    </div><br>
+    <span id="ihave" class="green btn" style="display: none; text-transform: none;width: 100%;font-size: large;">I have pasted code </span>
+
+</div>
+</div>
+</div> 
+<script>  
+ 
+document.getElementById('verifylink').addEventListener('click', function(){  
+var y = new URL($('#url').val())  
+if(y!='' || y!=undefined){ 
+  $.ajax({
+    url:'/verifyweblinkandsubmit'  , 
+    data:{"link":String(y) },
+    beforeSend: function () {
+        $("#verifylink").html("Verifying Link . . .");
+      },
+      complete: function () {
+        $("#verifylink").html("Verify Link"); 
+      },
+    success:function(data){
+      if(data.status==200){
+        M.toast({html: 'Link verified Successfully!', classes: 'rounded green'});
+        $('#code').show()
+        $('#code').html(``)
+        $('#code').append(`<p>Paste following code in &lt;head&gt; ... &lt;/head&gt; of <a href="${data.website}">${data.website}</a>. </p>`)
+        
+        
+        $('#code').append(`<p><pre><code class="language-markup">&lt;script src="https://gonited.online/Static/javascript/USERREG.js"&gt;  &lt;/script&gt;</code></pre>  </p>`)
+        $('#ihave').show()
+        $('#ihave').click(function(){
+          $.ajax({
+            url:'/checkpastedcode',
+            data:{'code':data.uuid,'website':data.website},
+            success:function(data2){
+              if(data2.status=='found'){
+                window.location='/dashboard/grablinks/'
+              }else if(data2.status=='notfound'){
+                swal('Sorry !',"Code not found on this site" , 'error')
+              }
+            }
+          })
+        })
+
+
+        
+      
+      }else if(data.status=='duplicate'){
+        swal('Sorry !',"Web Address already taken !" , 'warning') 
+      }else if(data.status=='invalid'){
+        swal('Sorry !',"Link is invalid. Please use correct Link" , 'error')
+      };
+    }, 
+    error:function(){
+      swal('Sorry !',"Please use Correct Link or check your Internet Connection !" , 'error')
+         
+
+    }
+  })
+}
+})
+</script>    
+{% endif %}
+  
+
+
+ 
+
+
+
+
+
+
+
+
+
+

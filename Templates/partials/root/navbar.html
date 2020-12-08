@@ -1,0 +1,249 @@
+{% block 'mainbody' %}
+<div id="realnav" class="navbar-fixed" style="position: relative;">  
+  <!-- SEARCH BUTTON FOR MOBILE -->
+  <a class="sub_sidebar_activator  searchbtnloocationhandle waves-effect waves-light " style="position: fixed;z-index: 1;margin:16px 10px  ;top: 3px;right: 5px;" onclick="document.getElementById('searchnav').style.display='block';document.getElementById('realnav').style.display='none';document.getElementById('query').focus()"><i class="material-icons white-text">search</i></a>
+  <!-- SEARCH BUTTON FOR ML -->
+  <!-- <a style="margin:8px 10px ;display: none;position: fixed;top: 10;right:0" data-target="slide-out" class="sub_sidebar_activator sidenav-trigger btn-floating  waves-effect waves-light green accent-4"><i class="material-icons">menu</i></a> -->
+ 
+  <nav  class="green ">
+
+      <div class="nav-wrapper">
+          <a href="/" class="brand-logo" style="padding-left: 10px;">freeassets</a>
+          <!-- <a href="/" class="brand-logo"><i style="font-size: 50px;" class="large material-icons">network_check</i></a> -->
+          <a href="#" data-target="slide-out"   class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+           
+            <li><a class="dropdown-trigger"  data-target="2D">2D<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="3D">3D<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="Animation">Animation<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="Audio">Audio<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="Tools">Tools & More<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li onclick="document.getElementById('realnav').style.display='none';document.getElementById('searchnav').style.display='block';document.getElementById('query').focus()" style="margin-right: 10px;"><a href="#"><i class="material-icons" >search</i></a></li>
+
+           
+                
+          </ul>
+      </div>
+    </nav>
+</div>
+
+
+<!-- PYTHON -->
+
+<!-- Dropdown Structure -->
+<ul id="2D" class="dropdown-content" style="min-width:200px">
+  <a href="/category/2d/">All</a>
+  <li class="divider"></li>
+
+  <a href="/category/2d/Animation">Animation</a>
+  <li class="divider"></li>
+   
+  <a href="/category/2d/Characters">Characters</a>
+  <li class="divider"></li>
+  <a href="/category/2d/Enviroment">Enviroment</a>
+  <li class="divider"></li>
+  <a href="/category/2d/Font">Font</a>
+  <li class="divider"></li>
+  <a href="/category/2d/Gui">Gui</a>
+  <li class="divider"></li> 
+  <a href="/category/2d/Sprites">Sprites</a>
+</ul>
+
+
+
+<!-- Dropdown Structure -->
+<ul id="3D" class="dropdown-content" style="min-width:200px">
+  <a href="/category/3d/">All</a>
+  <li class="divider"></li>
+    <a href="/category/3d/Animation">Animation</a>
+  <li class="divider"></li>
+  <a href="/category/3d/Buildings">Buildings</a>
+  <li class="divider"></li>
+  <a href="/category/3d/Characters">Characters</a>
+  <li class="divider"></li>
+  <a href="/category/3d/Enviroment">Enviroment</a>
+  <li class="divider"></li>
+  <a href="/category/3d/Vehicles">Vehicles - Roads</a>
+  <li class="divider"></li>
+  <a href="/category/3d/Weapons">Weapons</a>
+  <li class="divider"></li>  
+</ul>
+
+
+
+<!-- Dropdown Structure -->
+<ul id="Animation" class="dropdown-content" style="min-width:150px">
+  <a href="/category/Animation/">All</a>
+  <li class="divider"></li>
+  <a href="/category/Animation/Character">Character - Object</a>
+  <li class="divider"></li>
+  <a href="/category/Animation/Particles">Particles </a>
+  <li class="divider"></li> 
+  <a href="/category/Animation/Shaders">Shaders</a>
+  <li class="divider"></li> 
+</ul>
+
+
+
+
+<!-- Dropdown Structure -->
+<ul id="Audio" class="dropdown-content" style="min-width:150px">
+  <a href="/category/Audio/">All</a>
+  <li class="divider"></li>
+  <a href="/category/Audio/Music">Music</a>
+  <li class="divider"></li>
+  <a href="/category/Audio/SoundFX">Sound <span style="font-style:italic;font-size: 18px">fx</span></a>
+  <li class="divider"></li> 
+</ul>
+
+
+
+    <!-- Dropdown Structure -->
+    <ul id="Tools" class="dropdown-content" style="min-width:  700px !important">
+      <div class="row">
+          <div class="col m3">
+            <a href="#!">AI</a>
+            <li class="divider"></li> 
+            <a href="#!">Camera</a>
+            <li class="divider"></li> 
+            <a href="#!">Networking</a>
+            <li class="divider"></li> 
+            <a href="#!">Physics</a>
+            <li class="divider"></li> 
+          </div>
+          <div class="col m3">
+            <a href="#!">Animation Effects</a>
+            <li class="divider"></li> 
+            <a href="#!">GUI Kits</a>
+            <li class="divider"></li>
+            <a href="#!">Sprites</a>
+            <li class="divider"></li>
+            <a href="#!">Video</a>
+            <li class="divider"></li> 
+          </div>
+
+          <div class="col m3">
+            <a href="#!">Particle System</a>
+            <li class="divider"></li>  
+            <a href="#!">Game Toolkits</a>
+            <li class="divider"></li> 
+            <a href="#!">Terrain</a>
+            <li class="divider"></li> 
+            <a href="#!">Visual Scripting</a>
+            <li class="divider"></li>
+          </div>
+          <div class="col m3">
+            <a href="#!">Architecture</a>
+             <li class="divider"></li>
+             <a href="#!">Modeling</a>
+             <li class="divider"></li>
+             <a href="#!">Utilities</a>
+           <li class="divider"></li> 
+           <a href="#!">Version Control</a>
+           <li class="divider"></li> 
+          </div>
+      </div>
+  </ul>
+<!-- Dropdown Structure -->
+<ul id="" class="dropdown-content" style="min-width:300px">
+
+
+
+
+
+ 
+
+
+
+
+
+</ul>
+
+
+
+ 
+<ul style="width: 250px;" class="sidenav" id="mobile-demo">
+
+
+  <li style="padding: 0px;margin: 0px;"><div class="user-view">
+    <div class="background">
+      <img style="width: 200px;width: 250px;" src="https://news.efinancialcareers.com/binaries/content/gallery/efinancial-careers/articles/2019/03/programmer.jpg">
+    </div>
+    <a href="#user"><img class="circle" src="https://icon-library.com/images/icon-programmer/icon-programmer-14.jpg"></a>
+    <a href="#name" class="white-text name">Mashood ur Rehman</a>
+    <a href="#email" class="white-text email">mashoodurrehmanofficial@gmail.com</a>
+  </div></li>
+  <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+  <li><a href="#!">Second Link</a></li>
+  <li><div class="divider"></div></li>
+  <li><a class="subheader">Subheader</a></li>
+  <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+</ul>
+ 
+
+
+
+
+
+<!-- SEARCH -->  
+<div id="searchnav" class="navbar-fixed" style="display: none;">
+  <nav>
+    <div class="nav-wrapper"> 
+      <div id="search" class="search grey darken-3">
+        <form action="/search" method="GET" ;">
+          <input name="query" id="query" placeholder=" Type any tag name like Animation" type="text" style="all:unset !important;width:80% !important;font-size: 20px !important;padding-left: 20px !important;color: red;" autofocus autocomplete="off"> 
+        <a onclick="document.getElementById('searchnav').style.display='none';document.getElementById('realnav').style.display='block';" style="float: right;cursor: pointer;" ><i style="border-left:1px solid grey;font-size:30px;padding:0px 10px;" class="material-icons">clear</i></a>
+        </form>
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+
+
+
+
+{% endblock 'mainbody' %}
+
+
+{% block 'js' %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, {
+      'Sidenav':true,
+      
+    });
+    })
+</script>
+{% endblock 'js' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

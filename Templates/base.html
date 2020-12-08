@@ -1,0 +1,93 @@
+{% load static  %}
+<!DOCTYPE html>
+<html>
+<head>
+ 
+<link rel="stylesheet" href="{{ STATIC_URL }}/Static/css/materialize.css"> 
+<link rel="stylesheet" href="{{ STATIC_URL }}/Static/css/prism.css"> 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">  -->
+    <script src="{{ STATIC_URL }}/Static/javascript/materialize.js"></script>
+{% if title %}
+  <title>{{title}}</title>  
+{% else %}
+  <title>IgnitedTraffic</title>
+  {% endif %}
+  
+<link rel="shortcut icon" href="http://unityassetcollection.com/wp-content/uploads/2020/12/Toon-City-300x200.jpg" type="image/x-icon">
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+  
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+<style>
+  .t18{
+    font-size:18px
+  }
+  nav {
+    height: 55px;
+    line-height: 55px;
+}
+.text{font-family: 'Nunito', sans-serif;}
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+    height: 55px;
+    line-height: 55px;
+}
+
+nav .button-collapse i {
+    height: 55px;
+    line-height: 55px;
+}
+
+nav .brand-logo { 
+  font-size: 2rem; 
+}
+
+
+nav ul  li a{
+  padding:0px 10PX!important; 
+}
+ul.dropdown-content   a{
+  color: teal !important;
+  outline:none !important;
+  text-decoration:none !important;
+}
+
+
+</style>
+</head>
+<body class="grey lighten-2">  
+  <!-- <h1 id="h1"></h1>     -->
+{% include 'partials/root/navbar.html' %}
+
+{% block 'mainbody' %}
+
+
+{% endblock 'mainbody' %}
+
+{% include 'partials/root/footer.html' %}
+          
+
+
+
+<script src="{{ STATIC_URL }}/Static/javascript/jquery.js"></script>  
+<script src="{{ STATIC_URL }}/Static/javascript/responsive.js"></script>   
+<script src="{{ STATIC_URL }}/Static/javascript/sweetalert.js"></script>
+<script src="{{ STATIC_URL }}/Static/javascript/USERREG.js"></script>
+<script src="{{ STATIC_URL }}/Static/javascript/prism.js"></script>
+{% block 'js' %}
+{% endblock 'js' %}
+<script> 
+
+document.addEventListener('DOMContentLoaded', function() {
+var elems = document.querySelectorAll('.sidenav');
+var instances = M.Sidenav.init(elems, {'Sidenav':true});
+var elems = document.querySelectorAll('.dropdown-trigger');
+var instances = M.Dropdown.init(elems, {'Dropdown':true,"coverTrigger":false,"hover":false});
+  });
+</script>
+   </body>
+ </html>

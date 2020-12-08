@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+{% block 'mainbody' %}
+
+    <!-- Setting UP ID -->
+<!-- SECTION - Sidebar for medium and large screens -->
+{% include "partials/root/sidebar.html" %}
+
+<!-- SECTION - USER PROFILE -->
+<main>
+    <!-- SECTION - USERID_AUTH -->
+    {% if user_profile.gender == '' %} 
+    {% include "partials/root/userprofilesetup/useridauth.html" %}
+    <!-- SECTION - PROFILE_CARD -->
+    {% else %} 
+    <br> 
+    <br> 
+    <br> 
+        <div class=" " style="position: relative;margin: 0px 20px;">
+          <div id="verifyemaildiv" class="g1 card-panel grey lighten-5" style="margin: 0px;">
+            <span class="gradient1 center white-text z-depth-2" style="font-size: 30px;margin: 0px;position: absolute;top:-30px;left: 50px;right: 50px;padding: 5px 10px;">Integration</span><br>
+            <p>
+                Before claiming traffic for any page paste following code into <u>&lt;head&gt; ... &lt;/head&gt;</u> 
+                of the page for whom you are about to claim Traffic.
+            </p>
+            <pre><code class="language-markup">&lt;script src="https://gonited.online/Static/javascript/USERREG.js"&gt;  &lt;/script&gt;</code></pre>  
+                        
+                        
+                
+      <!-- END PRELOADER -->
+      
+      
+          
+    </div>
+        </div> 
+
+    <script></script>
+    
+    {% endif %}
+</main>  
+
+{% endblock 'mainbody' %} 
+{% block 'js' %} 
+<script> 
+
+</script>
+{% endblock 'js' %}     
