@@ -81,8 +81,8 @@ def IMAGE_Handling(sender,instance,**kwargs):
     # else:
         
     
-    
-    allimage = os.listdir(os.getcwd()+"\\Media\\files") 
+    # os.getcwd()+"\\Media\\files"
+    allimage = os.listdir(os.path.join(os.getcwd(),'Media','files')) 
     print("_"*20)
     itemsavedimage = [str(x.image.name).replace('files/','') for x in Item.objects.all()]
     print(itemsavedimage)
