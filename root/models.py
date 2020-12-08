@@ -2,6 +2,9 @@ from django.db import models
 from django.db.models.signals import post_save,post_delete,pre_save
 from django.core.exceptions import ValidationError
 from django.dispatch import receiver 
+from PIL import Image
+
+
 import os,uuid,time,random
 from datetime import datetime
 
@@ -27,7 +30,7 @@ class Item(models.Model):
     version = models.CharField(max_length=200,blank=True)
     latestversion=models.BooleanField(blank=True,default=True)
     filesize = models.CharField(max_length=200,blank=True)
-    image = models.FileField(upload_to='files/',blank=True)   
+    image = models.ImageField(upload_to='files/',blank=True)   
     
     parent = models.ForeignKey(ParentCategory,on_delete=models.CASCADE)
     maintag = models.ForeignKey(MainTag,on_delete=models.CASCADE)
@@ -70,8 +73,13 @@ class Item(models.Model):
                 self.id = int(time.time())
                 itemontop =  Item.objects.all().order_by('-id')[0] 
                 if self.insertTOP is False:self.id = Item.objects.all().order_by('id')[0].id-1
-        else:self.id = int(time.time())
+        else:self.id = int(time.time())  
         super(Item, self).save(*args, **kwargs)
+        imag = Image.open(self.image.path)
+        if imag.width > 400 or imag.height> 300:
+            output_size = (400, 300)
+            imag.thumbnail(output_size)
+            imag.save(self.image.path)
  
     
 @receiver(post_save, sender=Item)
