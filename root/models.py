@@ -12,7 +12,7 @@ from datetime import datetime
 
 RAW_SEO_DATA=[
     "unity assets for free","unity assets free download",'unity paid assets for free',"unity free paid assets",
-    '** free download','unity *** free download','** latest version free download','** latest version download'
+    '** free download','unity ** free download','** latest version free download','** latest version download'
 ]
 
 class ParentCategory(models.Model):
