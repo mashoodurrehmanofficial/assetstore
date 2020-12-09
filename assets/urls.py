@@ -24,8 +24,8 @@ from django.contrib.sitemaps.views import sitemap
 from root.sitemaps import *
 
 sitemaps = {
-    'article': Article_Sitemap(),
-    'static': Static_Sitemap(),
+    # 'article': Article_Sitemap(),
+    # 'static': Static_Sitemap(),
 }
 def xml(request):
     return redirect('https://www.xml-sitemaps.com/download/unityfreepaidassets.com-a2d54aed8/sitemap.xml?view=1')
