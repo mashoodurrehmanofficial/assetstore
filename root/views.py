@@ -19,6 +19,7 @@ def itempage(request,grabItem):
         return HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain")
     if 'favicon.ico' in grabItem:
         return redirect('/')
+ 
     else:
         requiredItem = Item.objects.filter(url=grabItem).first()
         allitems = Item.objects.all().exclude(id=requiredItem.id) 

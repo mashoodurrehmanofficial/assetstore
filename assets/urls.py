@@ -27,14 +27,11 @@ sitemaps = {
     'article': Article_Sitemap(),
     'static': Static_Sitemap(),
 } 
-def xml(request):
-    return HttpResponse(2)
-urlpatterns = [
-    path('admin/admin/admin/naniwala/', admin.site.urls),   
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
 
-    path('', include('root.urls')),     
-    # path('admin/admin/admin/sitemap.xml/',xml),
+urlpatterns = [
+    path('admin/admin/admin/naniwala/', admin.site.urls),  
+    path('sitemap.xml/', sitemap, {'sitemaps': sitemaps}),
+    path('', include('root.urls')),      
      
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
