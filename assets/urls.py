@@ -28,12 +28,12 @@ sitemaps = {
     'static': Static_Sitemap(),
 } 
 def xml(request):
-    return HttpResponse(open('Static/sitemap.xml').read()) 
+    return HttpResponse(open('Static/sitemap.xml').read()).read()
 urlpatterns = [
     path('admin/admin/admin/naniwala/', admin.site.urls),  
     path('', include('root.urls')),     
     # path('admin/admin/admin/sitemap.xml/',xml),
-    path('admin/admin/admin/sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    path('admin/admin/admin/sitemap.xml/', sitemap, {'sitemaps': sitemaps}),
      
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
