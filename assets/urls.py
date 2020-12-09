@@ -20,21 +20,22 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
-
-from root.sitemaps import *
 import os
+from root.sitemaps import *
+
 sitemaps = {
     'article': Article_Sitemap(),
     'static': Static_Sitemap(),
 }
+# def xml(request):
+#     return redirect('https://www.xml-sitemaps.com/download/unityfreepaidassets.com-a2d54aed8/sitemap.xml?view=1')
 def xml(request):
-    return HttpResponse(open(os.path.join(os.getcwd(),'assets','sitemap.xml')).read())
-
+    return HttpResponse(open(os.path.join(os.getcwd(),'assets',)).read())
 urlpatterns = [
     path('admin/admin/admin/naniwala/', admin.site.urls),  
     path('', include('root.urls')),     
-    # path('sitemap.xml',xml),
-    path('admin/admin/admin/sitemap.xml/',xml),
+    path('admin/admin/admin/sitemap.xml',xml),
+    # path('admin/admin/admin/sitemap.xml/', sitemap, {'sitemaps': sitemaps}),
      
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
