@@ -30,8 +30,9 @@ sitemaps = {
 def xml(request):
     return HttpResponse(2)
 urlpatterns = [
-    path('admin/admin/admin/naniwala/', admin.site.urls),  
+    path('admin/admin/admin/naniwala/', admin.site.urls),   
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+
     path('', include('root.urls')),     
     # path('admin/admin/admin/sitemap.xml/',xml),
      

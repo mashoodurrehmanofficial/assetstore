@@ -15,7 +15,8 @@ def index(request):
 
 
 def itempage(request,grabItem):
-    print('______',grabItem)
+    if 'robot.txt' in grabItem:
+        return HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain")
     if 'favicon.ico' in grabItem:
         return redirect('/')
     else:
