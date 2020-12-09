@@ -34,7 +34,7 @@ urlpatterns = [
     path('admin/admin/admin/naniwala/', admin.site.urls),  
     path('', include('root.urls')),     
     # path('sitemap.xml',xml),
-    path('admin/admin/admin/sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    path('admin/admin/admin/sitemap.xml/', sitemap, {'sitemaps': sitemaps}),
      
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
