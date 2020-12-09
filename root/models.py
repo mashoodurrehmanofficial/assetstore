@@ -65,7 +65,7 @@ class Item(models.Model):
     def save(self, *args, **kwargs):
         if self.AUTOGENRATE is True and self.assetstorelink !='':
             self.x = requests.get(self.assetstorelink)
-            soup = BeautifulSoup(self.x.text,'lxml')
+            soup = BeautifulSoup(self.x.text,'html.parser')
             soupdes = soup.find('div', attrs={'class':'_3MR2i pc'})
             soup = soup.find('div', attrs={'class':'_3ZV2G m3_2T _9EVz3 _2CNUL wnn-Y'})
             self.heading = soup.find('h1').text+' - free download'
