@@ -116,8 +116,8 @@ class Item(models.Model):
             imag.thumbnail(output_size)
             imag.save(self.image.path)
     
-    # def get_absolute_url(self):
-    #     return reverse('index',str(self.url))
+    def get_absolute_url(self):
+        return reverse('index',str(self.url))
     
 @receiver(post_save, sender=Item)
 def IMAGE_Handling(sender,instance,**kwargs):

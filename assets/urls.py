@@ -24,8 +24,8 @@ from django.contrib.sitemaps.views import sitemap
 from root.sitemaps import *
 
 sitemaps = {
-    # 'article': Article_Sitemap(),
-    # 'static': Static_Sitemap(),
+    'article': Article_Sitemap(),
+    'static': Static_Sitemap(),
 }
 def xml(request):
     return redirect('https://www.xml-sitemaps.com/download/unityfreepaidassets.com-a2d54aed8/sitemap.xml?view=1')
@@ -33,8 +33,8 @@ def xml(request):
 urlpatterns = [
     path('admin/admin/admin/naniwala/', admin.site.urls),  
     path('', include('root.urls')),     
-    path('sitemap.xml',xml),
-    # path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    # path('sitemap.xml',xml),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
      
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
