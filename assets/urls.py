@@ -30,11 +30,11 @@ sitemaps = {
 # def xml(request):
 #     return redirect('https://www.xml-sitemaps.com/download/unityfreepaidassets.com-a2d54aed8/sitemap.xml?view=1')
 def xml(request):
-    return HttpResponse(open(os.path.join(os.getcwd(),'assets',)).read())
+    return HttpResponse(open(os.path.join(os.getcwd(),'assets','sitemap.xml')).read())
 urlpatterns = [
     path('admin/admin/admin/naniwala/', admin.site.urls),  
     path('', include('root.urls')),     
-    path('admin/admin/admin/sitemap.xml',xml),
+    path('admin/admin/admin/sitemap.xml/',xml),
     # path('admin/admin/admin/sitemap.xml/', sitemap, {'sitemaps': sitemaps}),
      
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
