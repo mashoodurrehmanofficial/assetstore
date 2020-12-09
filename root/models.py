@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.db.models.signals import post_save,post_delete,pre_save
 from django.core.exceptions import ValidationError
 from django.dispatch import receiver 
@@ -114,7 +115,9 @@ class Item(models.Model):
             output_size = (400, 300)
             imag.thumbnail(output_size)
             imag.save(self.image.path)
- 
+    
+    def get_absolute_url(self):
+        return reverse('index',str(self.url))
     
 @receiver(post_save, sender=Item)
 def IMAGE_Handling(sender,instance,**kwargs):
