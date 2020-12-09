@@ -51,3 +51,6 @@ from bs4 import BeautifulSoup
 # #
 # test
 
+print(requests.get('https://unityfreepaidassets.com/sitemap.xml').text)
+
+ 

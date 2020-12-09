@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import include, url
-
+from django.shortcuts import render,redirect
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
@@ -27,11 +27,14 @@ sitemaps = {
     'article': Article_Sitemap(),
     'static': Static_Sitemap(),
 }
+def xml(request):
+    return redirect('https://www.xml-sitemaps.com/download/unityfreepaidassets.com-a2d54aed8/sitemap.xml?view=1')
 
 urlpatterns = [
     path('admin/admin/admin/naniwala/', admin.site.urls),  
     path('', include('root.urls')),     
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    path('sitemap.xml',xml),
+    # path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
      
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
