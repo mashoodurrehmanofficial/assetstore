@@ -109,7 +109,7 @@ class Item(models.Model):
         else:self.id = int(time.time())  
         self.AUTOGENRATE=False
         super(Item, self).save(*args, **kwargs)
-        imag = Image.open(self.image.path)
+        imag = Image.open(self.image.path).convert("RGB")
         if imag.width > 400 or imag.height> 300:
             output_size = (400, 300)
             imag.thumbnail(output_size)
