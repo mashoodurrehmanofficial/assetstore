@@ -7,14 +7,28 @@
 </div>
 
 
-<div class="white" style="margin:2px 30px;border-radius:20px;padding:5px 10px">
+<div class="grey lighten-1" style="margin:2px 30px;border-radius:20px;padding:5px 10px">
     <div class="row" style="margin:3px 5px">
         {% for x in items %}
             <div class="col m6 l4" style="padding:0px 10px !important;position:relative;"> 
-                <div class=" z-depth-2" style="margin-top:10px;height:340px" >
+                <div class="white z-depth-2" style="margin-top:10px;height:340px" >
                     <img src="/Media/{{x.image}}" height="230px" width="100%" style=" position:relative;">
-                    <!-- <div class="grey darken-3 z-depth-2" style="padding: 2px 8px;border-radius:10px;position:absolute;top:12px;right:25px;z-index:100 !important"><i class="material-icons green-text text-accent-4 left tiny" style="font-size:10px;margin-top:6px;margin-right:8px">brightness_1</i><span class="right white-text">Latest</span></div> -->
-                <div style="line-height:30px;font-size:23px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a class="indexlinkitem grey-text text-darken-2 text"  href="/{{x.url}}"><b>{{x.title}}</b></a></div>
+                    
+                   
+
+
+                    {% if x.latestversion %}
+                      
+                    <a  style="border-radius:10px;position:absolute;top:12px;right:25px;z-index:100 !important" class=" grey-text text-darken-3 waves-effect waves-light btn white  pulse"><i style="font-size: 14px;" class="material-icons left green-text text-accent-4">brightness_1</i><b class="text">Latest</b></a>
+                    {% endif %}
+                    
+ 
+                    {% if x.heading %}
+                    <div style="line-height:30px;font-size:23px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a class="indexlinkitem grey-text text-darken-2 text"  href="/{{x.url}}"><b>{{x.heading}}</b></a></div>                    
+                    {% else %}
+                    <div style="line-height:30px;font-size:23px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a class="indexlinkitem grey-text text-darken-2 text"  href="/{{x.url}}"><b>{{x.title}}</b></a></div>
+                    {% endif %}
+                    
             </div>
         </div>  
         {% endfor %}

@@ -20,7 +20,7 @@
                       <a href="/" class="breadcrumb">Home</a>
                       <a href="/category/{{parent}}" class="breadcrumb">{{parent}}</a>
                       <a href="/category/{{parent}}/{{maintag}}" class="breadcrumb">{{maintag}}</a>
-                      <a href="#!" class="breadcrumb">{{title}}</a> 
+                      <a href="/" class="breadcrumb">{{heading}}</a> 
                     </div>
                   </div>
                 </nav>
@@ -55,7 +55,14 @@
                        <div class="col m4 l4 s6" style="padding:0px 10px !important;"> 
                             <div class=" z-depth-2" style="margin-top:10px;height:350px" >
                                 <img src="../../Media/{{x.image}}" height="200px" width="100%">
+                                {% if x.heading %}
+                                <div class="" style="line-height:25x;font-size:20px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a href="/{{x.url}}">{{x.heading}}</a></div>
+                                
+                                {% else %}
                                 <div class="" style="line-height:25x;font-size:20px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a href="/{{x.url}}">{{x.title}}</a></div>
+                                  
+                                {% endif %}
+                                
                             </div>
                         </div>  
                      
@@ -113,7 +120,14 @@
             {% for x in rightbaritems %}
               <div style="font-size: 16px;margin: 0% !important;border-bottom: 0.1rem solid white;">
                 <img height="120px" width=120px"  class="responsive-img" src="../../Media/{{x.image}}" style="float: left;margin-right: 10px;margin-top: 5px" alt="">
+                {% if x.heading %}
+                <p style="margin-top:0%"><a href="/{{x.url}}" target="_blank"><span style="font-weight: 500">{{x.heading}}</span></a></p>
+                {% else %}
                 <p style="margin-top:0%"><a href="/{{x.url}}" target="_blank"><span style="font-weight: 500">{{x.title}}</span></a></p>
+                  
+                {% endif %}
+                
+                
             </div>  <br>
             {% endfor %}
             

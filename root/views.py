@@ -32,6 +32,7 @@ def itempage(request,grabItem):
             "url":requiredItem.url,
             "image":requiredItem.image,
             "version":requiredItem.version,
+            "islatestversion":requiredItem.latestversion,
             "filesize":requiredItem.filesize,
             "parent":requiredItem.parent.name,
             "maintag":requiredItem.maintag.name,

@@ -39,7 +39,7 @@ class Item(models.Model):
     support_versions = models.CharField(max_length=200,blank=True)
     latestversion=models.BooleanField(blank=True,default=True)
     filesize = models.CharField(max_length=200,blank=True)
-    image = models.ImageField(upload_to='files/',blank=True)   
+    image = models.FileField(upload_to='files/',blank=True)   
     
     parent = models.ForeignKey(ParentCategory,on_delete=models.CASCADE)
     maintag = models.ForeignKey(MainTag,on_delete=models.CASCADE)
