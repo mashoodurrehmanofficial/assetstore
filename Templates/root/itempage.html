@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col m9 l9 " style="padding:1px 20px !important">
         <div class="white"  style="padding:1px 20px !important">
-            <h3 ><b>Kings – Card Swiping Decision Game Asset</b></h3>
+            <h3 ><b>{{heading}}</b></h3>
             
 
             <nav class="breadcrumb-nav col s12 truncate green" style="height:40px; line-height: 40px;">
@@ -32,42 +32,32 @@
                     <img heigth="100%" width="100%" src="../../Media/{{image}}" alt="">
                 </div>
                 <div class="col m7 l7"> 
-                    <div style="line-height:25px;font-size:20px">You can download this paid asset free of cost. If you want to look at  this on assetstore then this is the link <a target="_blank" href="{{storelink}}"><u>assetstore link!</u></a>. If you can buy this asset then please buy it to support developer.</div>
+                    <div style="line-height:25px;font-size:20px">{{miniseo}}You can download this paid asset free of cost. If you want to look at  this on assetstore then this is the link <a target="_blank" href="{{assetstorelink}}"><u>assetstore link!</u></a>. </div>
                     <br>
                     <span ><b>Version:</b> {{version}}</span><br>
                     <span ><b>File Size:</b> {{filesize}}</span> <br>
                     <span><b>Cost:</b><b><span  class="green-text text-darken-1"> 100% free</span></b> </span><br>
                     <!-- <span style="font-size:25px" >● <b><u><a href=""class="green-text text-darken-1">4 similar assets are available for free</a></u></b></span><br> 
                     <span style="font-size:25px" >● <b><u><a class="green-text text-darken-1"href="">232 relevent assets are available for free</a></u></b></span> -->
-                    <br> <br>
+                    <br> 
                     <div style="display:flex;justify-content:center;align-items:center">
                         <div class="pulse btn red white-text " style="text-transform:none;width:300px;height:43px;font-size:30px">
                             <a href="#x" class="white-text">free downlaod</a>
                         </div>
                     </div>
-                </div> 
+                </div>  
             </div>
           
             <h3><b>You May Like</b></h3>
             <div >
                 <div class="row">
                     {% for x in bottom1 %}
-                       <div class="col m4 l4 s6" style="padding:0px 10px !important;height:270"> 
-                        <div class=" z-depth-2" style="margin-top:10px;" >
-                            <img src="../../Media/{{x.image}}" height="200px" width="100%">
-                            <div class="" style="line-height:25x;font-size:20px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a href="/{{x.shortname}}">{{x.title}}</a></div>
-                        </div>
-                    </div>  <div class="col m4 l4 s6" style="padding:0px 10px !important;height:270"> 
-                        <div class=" z-depth-2" style="margin-top:10px;" >
-                            <img src="../../Media/{{x.image}}" height="200px" width="100%">
-                            <div class="" style="line-height:25x;font-size:20px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a href="/{{x.shortname}}">{{x.title}}</a></div>
-                        </div>
-                    </div>  <div class="col m4 l4 s6" style="padding:0px 10px !important;height:270"> 
-                        <div class=" z-depth-2" style="margin-top:10px;" >
-                            <img src="../../Media/{{x.image}}" height="200px" width="100%">
-                            <div class="" style="line-height:25x;font-size:20px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a href="/{{x.shortname}}">{{x.title}}</a></div>
-                        </div>
-                    </div> 
+                       <div class="col m4 l4 s6" style="padding:0px 10px !important;"> 
+                            <div class=" z-depth-2" style="margin-top:10px;height:350px" >
+                                <img src="../../Media/{{x.image}}" height="200px" width="100%">
+                                <div class="" style="line-height:25x;font-size:20px !important;padding:0px !important;margin:0px !important;padding:3px 8px !important"><a href="/{{x.url}}">{{x.title}}</a></div>
+                            </div>
+                        </div>  
                      
                     {% endfor %} 
                      
@@ -75,8 +65,16 @@
                 </div>
             </div>
             <div>
+                {% if intro != '' %} 
                 <h4>Intro</h4>
                 <p class="t18">{{intro}}</p>
+                {% endif %}
+                {% if description != '' %} 
+                <h4>Description</h4>
+                <span style="font-size:20px" >{{description|linebreaks}}</span>
+                {% endif %}
+
+
                 {% if compatibility.0  != '' %} 
                 <h4>Compatibility</h4>
                 {% for x in compatibility %}
@@ -84,7 +82,7 @@
                 {% endfor %}
                 {% endif %}
 
-                 {% if features1  != '' %} 
+                 {% if features1.0  != '' %} 
                 <h4>Features</h4>
                 {% for x in features1 %} 
                 {% if x != "" %}
@@ -101,7 +99,7 @@
                 {% endif %}
                 {% endfor %}
                 {% endif %}
-
+                <h1 style="font-size:25px">{{seotags}}</h1>
                 
             </div>
         </div><br>
@@ -115,7 +113,7 @@
             {% for x in rightbaritems %}
               <div style="font-size: 16px;margin: 0% !important;border-bottom: 0.1rem solid white;">
                 <img height="120px" width=120px"  class="responsive-img" src="../../Media/{{x.image}}" style="float: left;margin-right: 10px;margin-top: 5px" alt="">
-                <p style="margin-top:0%"><a href="/{{x.shortname}}" target="_blank"><span style="font-weight: 500">{{x.title}}</span></a></p>
+                <p style="margin-top:0%"><a href="/{{x.url}}" target="_blank"><span style="font-weight: 500">{{x.title}}</span></a></p>
             </div>  <br>
             {% endfor %}
             

@@ -3,14 +3,16 @@ from django.db.models.signals import post_save,post_delete,pre_save
 from django.core.exceptions import ValidationError
 from django.dispatch import receiver 
 from PIL import Image
+from bs4 import BeautifulSoup
 
 
-import os,uuid,time,random
+import os,uuid,time,random,requests
 from datetime import datetime
 
 
 RAW_SEO_DATA=[
-    "unity assets free"
+    "unity assets for free","unity assets free download",'unity paid assets for free',"unity free paid assets",
+    '** free download','unity *** free download','** latest version free download','** latest version download'
 ]
 
 class ParentCategory(models.Model):
@@ -25,9 +27,16 @@ class MainTag(models.Model):
         return self.name
         
 class Item(models.Model): 
-    title = models.CharField(max_length=200)
-    shortname = models.CharField(max_length=200,blank=True)
+    assetstorelink = models.CharField(max_length=1000,blank=True)
+    fslink = models.CharField(max_length=1000,blank=True) 
+    AUTOGENRATE=models.BooleanField(blank=True,default=False)
+    AUTOSEO = models.BooleanField(default=True);
+    insertTOP = models.BooleanField(default=True);
+    heading = models.CharField(max_length=200,blank=True)
+    title = models.CharField(max_length=200,blank=True)
+    url = models.CharField(max_length=200,blank=True)
     version = models.CharField(max_length=200,blank=True)
+    support_versions = models.CharField(max_length=200,blank=True)
     latestversion=models.BooleanField(blank=True,default=True)
     filesize = models.CharField(max_length=200,blank=True)
     image = models.ImageField(upload_to='files/',blank=True)   
@@ -37,6 +46,7 @@ class Item(models.Model):
     
     seotags = models.TextField(max_length=1000,blank=True)
     querypurpose = models.ManyToManyField(MainTag,related_name="query")
+    description = models.TextField(blank=True)
     intro = models.TextField(max_length=2000,blank=True)
     compatibility = models.TextField(max_length=2000,blank=True)
     reasons = models.TextField(max_length=2000,blank=True)
@@ -47,26 +57,49 @@ class Item(models.Model):
     features2 = models.TextField(max_length=2000,blank=True)
     more = models.TextField(max_length=2000,blank=True)
     
-    storelink = models.CharField(max_length=1000,blank=True)
-    fslink = models.CharField(max_length=1000,blank=True)
+
     
-    AUTOSEO = models.BooleanField(default=True);
-    insertTOP = models.BooleanField(default=True);
     def __str__(self):
         return self.title
         
     def save(self, *args, **kwargs):
-        if self.AUTOSEO is True:
-            pass
+        if self.AUTOGENRATE is True and self.assetstorelink !='':
+            self.x = requests.get(self.assetstorelink)
+            soup = BeautifulSoup(self.x.text,'lxml')
+            soupdes = soup.find('div', attrs={'class':'_3MR2i pc'})
+            soup = soup.find('div', attrs={'class':'_3ZV2G m3_2T _9EVz3 _2CNUL wnn-Y'})
+            self.heading = soup.find('h1').text+' - free download'
+            self.title = self.heading+' | unity free paid assets'
+            soup = soup.find('div',attrs={'class':'_2nw25'})
+            self.filesize = soup.find('div',attrs={'class':'_27124 product-size'}).text.split('File size')[1] 
+            self.version = soup.find('div',attrs={'class':'_27124 product-version'}).text.split('Latest version')[1]  
+            self.support_versions = soup.find('div',attrs={'class':'_27124 product-support_version'}).text.split('Supported Unity versions')[1]  
+            self.url=self.heading.replace('  ',' ').replace(' ','-').replace('--','-').replace('--','-')
         
-        if 'GB' not in self.filesize:
-            self.filesize = self.filesize+" MB"
-        if 'MB'  in self.filesize:
-            self.filesize = self.filesize 
-        if self.shortname =='':
-            self.shortname = self.title.replace(' ','-').replace('•','')
-        if self.latestversion and '(Latest version)' not in self.version:
-            self.version = self.version+" (Latest version)"
+        
+        
+        
+        else:
+            if self.title.endswith(' '):
+                self.title.replace(' ','')
+            if 'GB' not in self.filesize and 'MB' not in self.filesize:
+                self.filesize = self.filesize+" MB"
+            if 'MB'  in self.filesize:
+                self.filesize = self.filesize 
+            if self.url =='':
+                self.url = self.title.replace(' ','-').replace('•','')+'-free-download'
+            if ' - free download' not in self.title:
+                self.title = self.title+' - free download' 
+            if '-free-download' not in self.url:
+                self.url = self.url+'-free-download' 
+            if self.latestversion and '(Latest version)' not in self.version:
+                self.version = self.version+" (Latest version)"    
+                
+        if self.AUTOSEO is True:
+            self.seotags = [str(x).replace('**', self.heading.replace(' - free download','')) for x in RAW_SEO_DATA]
+            self.seotags = ' , '.join(self.seotags)
+            
+
         if Item.objects.all().count()!=0: 
             if self.id is not None: pass  
             else:
@@ -74,6 +107,7 @@ class Item(models.Model):
                 itemontop =  Item.objects.all().order_by('-id')[0] 
                 if self.insertTOP is False:self.id = Item.objects.all().order_by('id')[0].id-1
         else:self.id = int(time.time())  
+        self.AUTOGENRATE=False
         super(Item, self).save(*args, **kwargs)
         imag = Image.open(self.image.path)
         if imag.width > 400 or imag.height> 300:
