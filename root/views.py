@@ -8,7 +8,7 @@ from .models import *
 def index(request): 
     items = Item.objects.all()
     context = {
-        'title':'Unity free paid assets | Download unity paid assets for free',
+        'title':'Unity paid assets for free | Unity free paid assets | Download unity paid assets for free ',
         "items":items
     }
     return render(request, "root/index.html",context)
@@ -53,6 +53,7 @@ def itempage(request,grabItem):
 def grabparentcategory(request,category):
     items = Item.objects.filter(parent__name=category)
     context = {
+        'title':f'{category} '+'Unity paid assets for free | Unity free paid assets | Download unity paid assets for free ',
         "items":items
     }
     return render(request, "root/index.html",context)
@@ -62,6 +63,7 @@ def grabparentcategory(request,category):
 def grabmainTagCategory(request,parent,maintag): 
     items = Item.objects.filter(parent__name=parent,maintag__name=maintag)
     context = {
+        'title':f'{parent} | {maintag} | '+'Unity paid assets for free | Unity free paid assets | Download unity paid assets for free ',
         "items":items
     }
     return render(request, "root/index.html",context)
