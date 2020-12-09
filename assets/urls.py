@@ -16,25 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import include, url
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 
 from root.sitemaps import *
-
+import os
 sitemaps = {
     'article': Article_Sitemap(),
     'static': Static_Sitemap(),
 }
 def xml(request):
-    return redirect('https://www.xml-sitemaps.com/download/unityfreepaidassets.com-a2d54aed8/sitemap.xml?view=1')
+    return HttpResponse(open(os.path.join(os.getcwd(),'assets','sitemap.xml')).read())
 
 urlpatterns = [
     path('admin/admin/admin/naniwala/', admin.site.urls),  
     path('', include('root.urls')),     
     # path('sitemap.xml',xml),
-    path('admin/admin/admin/sitemap.xml/', sitemap, {'sitemaps': sitemaps}),
+    path('admin/admin/admin/sitemap.xml/',xml),
      
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
